@@ -33,3 +33,28 @@ atom-text-editor{
     background: @base-background-color;
   }
 }
+
+
+.scrollbars-visible-always ::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+}
+
+.scrollbars-visible-always ::-webkit-scrollbar-corner{
+  background: @base-background-color;
+}
+
+.scrollbars-visible-always ::-webkit-scrollbar-thumb{
+
+  border-radius: 5px;
+  border: 2px solid fade(@base-background-second-color,20%);
+  background: fade(@base-background-second-color,25%);
+  background-clip: content-box;
+  &:active{
+    background: fade(@base-background-second-color,80%);
+  }
+}
+
+.scrollbars-visible-always ::-webkit-scrollbar-track{
+  background: @base-background-color;
+}
