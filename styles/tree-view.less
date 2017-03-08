@@ -1,0 +1,188 @@
+
+// Tree View
+// -------------------
+
+// Used to explore and open files in the current project.
+// Overrides: atom/tree-view
+
+.list-tree.has-collapsable-children .list-nested-item > .list-tree > li, .list-tree.has-collapsable-children .list-nested-item > .list-group > li {
+  padding: 0;
+}
+
+.tree-view-resizer {
+  box-shadow: 0px 0px 48px 8px rgba(0, 0, 0, .25);
+  border-right: 1px solid @base-border-color;
+}
+
+.tree-view {
+
+  color: @text-color;
+  background-color: darken(@tree-view-background-color, 2%);
+  padding: 0;
+
+  .list-nested-item{
+    .list-item{
+      padding-left: 1*@baseline;
+    }
+    .list-tree {
+      margin-left: 2*@baseline;
+      .list-item{
+        padding-left: 2*@baseline;
+      }
+    }
+  }
+
+  .list-tree {
+    .list-item.file{
+      margin-left: 0;
+    }
+    .list-nested-item{
+      margin-left: -2*@baseline;
+      &.expanded{
+        background: darken(@tree-view-background-color, 5%);
+      }
+
+      .list-item{
+        &.project-root-header{
+          padding-left: 2*@baseline;
+        }
+        &.header {
+          padding-left: 2*@baseline;
+        }
+      }
+      .list-tree {
+        margin-left: 4*@baseline;
+        .list-item{
+          // margin-left: -2*@baseline;
+          // padding-left: 2*@baseline;
+        }
+      }
+    }
+  }
+}
+
+
+.project-root{
+
+  .project-root-header{
+    line-height: 6*@baseline!important;
+    border-left: 4px solid transparent;
+  }
+
+  &.selected{
+
+    .project-root-header{
+      border-left: 4px solid #885fe5;
+      color: @text-color-highlight;
+    }
+    &::before{
+      content: '';
+      left: 0;
+      right: 0;
+      height: 6*@baseline!important;
+      background-color: fade(@base-background-second-color, 25%)!important;// darken(@tree-view-background-color, 20%);
+    }
+  }
+}
+
+.list-item{
+  line-height: 4.5*@baseline!important;
+  color: @text-color;
+  .icon{
+    &::before{
+      color: darken(@text-color-highlight,25%);
+      margin-right: 1.25*@baseline;
+      width: 2.125*@baseline;
+      font-size: 2.125*@baseline;
+    }
+  }
+  &.selected{
+    color: lighten(@base-background-second-color, 10%)!important;
+    .icon{
+      color: inherit;
+      &::before{
+        color: inherit;
+      }
+    }
+  }
+}
+
+.list-nested-item{
+  &.selected{
+    >.list-item:not(.project-root-header) {
+      color: lighten(@base-background-second-color, 10%)!important;
+      >.icon{
+        color: inherit!important;
+        &::before{
+          color: inherit!important;
+        }
+      }
+    }
+  }
+}
+
+.list-group .selected::before,
+.list-tree .selected::before{
+  height: 4.5*@baseline;
+  background: fade(@base-background-second-color,10%);
+  background: ;
+  left: 0;
+  right: 0;
+}
+
+
+.list-nested-item.status-modified{
+  >.list-item.header{
+    color: @text-color-warning;
+    .icon{
+      color: inherit;
+      &::before{
+        color: inherit;
+      }
+    }
+  }
+}
+.list-item{
+  &.status-modified{
+    color: @text-color-warning;
+    .icon{
+      &::before{
+        color: inherit;
+      }
+    }
+  }
+  &.status-added{
+    color: @text-color-success;
+    >.icon{
+      &::before{
+        color: inherit;
+      }
+    }
+  }
+}
+
+
+
+//arrow icon style for directory
+.list-tree.has-collapsable-children .list-nested-item > .list-item::before,
+.list-tree.has-collapsable-children .list-nested-item.collapsed > .list-item::before {
+  color: inherit;
+  width: 2*@baseline;
+  height: 2*@baseline;
+  font-size: 2*@baseline;
+  margin-right: @baseline;
+}
+
+
+
+//animations
+
+.tree-view {
+  .entry.expanded > .entries {
+    -webkit-animation: tree-view-expanded .25s cubic-bezier(.15,.7,.3, 1);
+  }
+  @-webkit-keyframes tree-view-expanded {
+      0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}

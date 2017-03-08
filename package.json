@@ -1,0 +1,15 @@
+{
+  "name": "ef-dark-ui",
+  "theme": "ui",
+  "version": "1.0.0",
+  "description": "Personal theme",
+  "keywords": [
+    "ui",
+    "theme"
+  ],
+  "repository": "https://github.com/fitimvata/ef-dark-ui.git",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
